@@ -78,6 +78,7 @@ namespace uMod.Agent.Modules
                 if (cmd.SimpleArgs.Length <= nextBasicArg)
                 {
                     outputDevice.WriteStaticLine("$redURL of resource must be specified.");
+                    ctx.ErrorFlag = true;
                     return true;
                 }
                 else
@@ -89,6 +90,7 @@ namespace uMod.Agent.Modules
             if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
             {
                 outputDevice.WriteStaticLine("$redURL is not well formed.");
+                ctx.ErrorFlag = true;
                 return true;
             }
 
@@ -112,6 +114,7 @@ namespace uMod.Agent.Modules
             if (outPath.Length < exeLoc.Length || !string.Equals(outPath.Substring(0, exeLoc.Length), exeLoc, StringComparison.OrdinalIgnoreCase))
             {
                 outputDevice.WriteStaticLine("$redDestination path blocked due to security reasons.");
+                ctx.ErrorFlag = true;
                 return true;
             }
 
@@ -165,9 +168,12 @@ namespace uMod.Agent.Modules
                 {
                     sizeLabel.Text = "$redCancelled";
                 }
+                ctx.ErrorFlag = true;
+                return true;
             }
 
             // Done
+            ctx.ErrorFlag = false;
             return true;
         }
 

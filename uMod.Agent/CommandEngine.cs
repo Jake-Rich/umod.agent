@@ -17,10 +17,24 @@ namespace uMod.Agent
         // All registered command handlers
         private IDictionary<string, ICommandHandler> handlers;
 
+        // The command context
+        private CommandContext context;
+
         /// <summary>
         /// Gets or sets the current command context
         /// </summary>
-        public CommandContext Context { get; set; }
+        public CommandContext Context
+        {
+            get
+            {
+                return context;
+            }
+            set
+            {
+                context = value;
+                context.Engine = this;
+            }
+        }
 
         /// <summary>
         /// Initialises a new instance of the CommandEngine class
@@ -43,21 +57,21 @@ namespace uMod.Agent
         }
 
         /// <summary>
-        /// Handles the specified command
+        /// Executes the specified command
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public bool HandleCommand(string str)
+        public bool ExecuteCommand(string str)
         {
-            return HandleCommand(new Command(str));
+            return ExecuteCommand(new Command(str));
         }
 
         /// <summary>
-        /// Handles the specified command
+        /// Executes the specified command
         /// </summary>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        public bool HandleCommand(Command cmd)
+        public bool ExecuteCommand(Command cmd)
         {
             ICommandHandler handler;
             if (handlers.TryGetValue(cmd.Verb, out handler))

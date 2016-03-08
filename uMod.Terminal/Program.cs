@@ -59,7 +59,7 @@ namespace uMod.Terminal
                     outputDevice.WriteStaticLine($"$cyan${Path.GetFileName(engine.Context.WorkingDirectory)}/$white: {cmdList[i]}");
 
                     // Handle command
-                    if (!engine.HandleCommand(cmdList[i]))
+                    if (!engine.ExecuteCommand(cmdList[i]))
                     {
                         outputDevice.WriteStaticLine("$redUnknown command!");
                     }
@@ -84,7 +84,8 @@ namespace uMod.Terminal
                     outputDevice.WriteStaticLine($"$cyan${Path.GetFileName(engine.Context.WorkingDirectory)}/$white: {line}");
 
                     // Handle command
-                    if (!engine.HandleCommand(line))
+                    engine.Context.ErrorFlag = false;
+                    if (!engine.ExecuteCommand(line))
                     {
                         outputDevice.WriteStaticLine("$redUnknown command!");
                     }

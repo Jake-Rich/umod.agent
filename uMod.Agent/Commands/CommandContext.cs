@@ -8,6 +8,11 @@ namespace uMod.Agent.Commands
     public sealed class CommandContext
     {
         /// <summary>
+        /// Gets or sets the command engine that backs this context
+        /// </summary>
+        public CommandEngine Engine { get; set; }
+
+        /// <summary>
         /// Gets or sets the current working directory
         /// </summary>
         public string WorkingDirectory { get; set; }
@@ -16,5 +21,10 @@ namespace uMod.Agent.Commands
         /// Gets or sets if the session should be terminated
         /// </summary>
         public bool Terminate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error state of the previous command
+        /// </summary>
+        public bool ErrorFlag { get; set; }
     }
 }
