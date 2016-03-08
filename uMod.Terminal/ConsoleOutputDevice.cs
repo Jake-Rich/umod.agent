@@ -60,6 +60,19 @@ namespace uMod.Terminal
         }
 
         /// <summary>
+        /// Writes a progress bar to the device
+        /// </summary>
+        /// <param name="label"></param>
+        public IProgressBar WriteProgressBar()
+        {
+            ProgressBar pbar = new ProgressBar(this);
+            pbar.ImmediateMode = false;
+            AddUIComponent(pbar);
+            pbar.ImmediateMode = true;
+            return pbar;
+        }
+
+        /// <summary>
         /// Adds a new component to this device
         /// </summary>
         /// <param name="component"></param>

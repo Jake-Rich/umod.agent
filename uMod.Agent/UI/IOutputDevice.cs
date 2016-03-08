@@ -18,5 +18,11 @@ namespace uMod.Agent.UI
         /// </summary>
         /// <param name="initialText"></param>
         ILabel WriteLabel(string initialText);
+
+        /// <summary>
+        /// Writes a progress bar to the device
+        /// </summary>
+        /// <param name="initialText"></param>
+        IProgressBar WriteProgressBar();
     }
 }

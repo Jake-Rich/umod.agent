@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.IO;
 
 using uMod.Agent.UI;
 using uMod.Agent.Commands;
@@ -71,12 +72,17 @@ namespace uMod.Agent.Modules
         {
             // Identify URL
             string url = cmd.GetNamedArg("url");
+            int nextBasicArg = 0;
             if (string.IsNullOrEmpty(url))
             {
-                if (cmd.SimpleArgs.Length == 0)
+                if (cmd.SimpleArgs.Length <= nextBasicArg)
                 {
                     outputDevice.WriteStaticLine("$redURL of resource must be specified.");
                     return true;
+                }
+                else
+                {
+                    url = cmd.SimpleArgs[nextBasicArg++];
                 }
             }
 
@@ -86,8 +92,102 @@ namespace uMod.Agent.Modules
                 return true;
             }
 
+            // Identify output file
+            string outPath = cmd.GetNamedArg("out");
+            if (string.IsNullOrEmpty(outPath))
+            {
+                if (cmd.SimpleArgs.Length <= nextBasicArg)
+                {
+                    outPath = Path.GetFileName(url);
+                }
+                else
+                {
+                    outPath = cmd.SimpleArgs[nextBasicArg++];
+                }
+            }
+            outPath = Path.GetFullPath(Path.Combine(ctx.WorkingDirectory, outPath));
+
+            // For security, do NOT accept paths above the executable's location
+            string exeLoc = Path.GetFullPath(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location));
+            if (outPath.Length < exeLoc.Length || !string.Equals(outPath.Substring(0, exeLoc.Length), exeLoc, StringComparison.OrdinalIgnoreCase))
+            {
+                outputDevice.WriteStaticLine("$redDestination path blocked due to security reasons.");
+                return true;
+            }
+
+            // Create request
+            ILabel sizeLabel = null;
+            try
+            {
+                ILabel label = outputDevice.WriteLabel($"Requesting {url}...");
+
+                WebRequest req = WebRequest.Create(url);
+                WebResponse response = req.GetResponse();
+
+                label.Text = $"Downloading {url}...";
+
+                sizeLabel = outputDevice.WriteLabel("");
+                IProgressBar progBar = response.ContentLength > 0 ? outputDevice.WriteProgressBar() : null;
+
+                string totalSize = response.ContentLength > 0 ? FormatContentLength(response.ContentLength) : "unknown";
+
+                using (var outStream = File.OpenWrite(outPath))
+                {
+
+                    long len = response.ContentLength;
+                    var stream = response.GetResponseStream();
+                    byte[] buffer = new byte[1024];
+
+                    long totalRead = 0;
+
+                    while (stream.CanRead)
+                    {
+                        int read = stream.Read(buffer, 0, 1024);
+                        outStream.Write(buffer, 0, read);
+                        if (read == 0) break;
+                        len -= read;
+
+                        totalRead += read;
+
+                        if (progBar != null) progBar.Progress = (totalRead / (float)response.ContentLength);
+
+                        sizeLabel.Text = $"{FormatContentLength(totalRead)} / {totalSize}";
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                outputDevice.WriteStaticLine("Unknown error when fetching resource:");
+                outputDevice.WriteStaticLine(ex.ToString());
+                if (sizeLabel != null)
+                {
+                    sizeLabel.Text = "$redCancelled";
+                }
+            }
+
             // Done
             return true;
+        }
+
+        public static string FormatContentLength(long length)
+        {
+            if (length < 1 << 10)
+            {
+                return $"{length} B";
+            }
+            else if (length < 1 << 20)
+            {
+                return $"{length >> 10}{(length & 0x3FF) / 1024.0f:.00} KiB";
+            }
+            else if (length < 1 << 30)
+            {
+                return $"{length >> 10}{((length & 0xFFFFF) >> 10) / 1024.0f:.00} MiB";
+            }
+            else
+            {
+                return $"{length >> 10}{((length & 0x3FFFFFFF) >> 10) / 1024.0f:.00} GiB";
+            }
         }
 
         #endregion

@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\ILabel.cs" />
     <Compile Include="UI\IOutputDevice.cs" />
+    <Compile Include="UI\IProgressBar.cs" />
     <Compile Include="UI\IUIComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
