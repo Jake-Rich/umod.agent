@@ -115,42 +115,43 @@ namespace uMod.Agent.Modules
                 return true;
             }
 
-            // Create request
             ILabel sizeLabel = null;
             try
             {
+                // Let UI know we're starting to do something
                 ILabel label = outputDevice.WriteLabel($"Requesting {url}...");
 
+                // Create request, acquire response
                 WebRequest req = WebRequest.Create(url);
                 WebResponse response = req.GetResponse();
 
+                // Let UI know so far so good
                 label.Text = $"Downloading {url}...";
-
                 sizeLabel = outputDevice.WriteLabel("");
-                IProgressBar progBar = response.ContentLength > 0 ? outputDevice.WriteProgressBar() : null;
 
+                // Did the server give us a content size? If so, add a progress bar
+                IProgressBar progBar = response.ContentLength > 0 ? outputDevice.WriteProgressBar() : null;
                 string totalSize = response.ContentLength > 0 ? FormatContentLength(response.ContentLength) : "unknown";
 
+                // Write to file
                 using (var outStream = File.OpenWrite(outPath))
                 {
-
-                    long len = response.ContentLength;
+                    // Get the response stream and allocate a buffer
                     var stream = response.GetResponseStream();
                     byte[] buffer = new byte[1024];
-
+                    
+                    // Iterate for as long as we can
                     long totalRead = 0;
-
                     while (stream.CanRead)
                     {
+                        // Read into the buffer, write to file, check eos (end of stream)
                         int read = stream.Read(buffer, 0, 1024);
                         outStream.Write(buffer, 0, read);
                         if (read == 0) break;
-                        len -= read;
-
                         totalRead += read;
 
+                        // Update UI
                         if (progBar != null) progBar.Progress = (totalRead / (float)response.ContentLength);
-
                         sizeLabel.Text = $"{FormatContentLength(totalRead)} / {totalSize}";
                     }
                 }
@@ -170,6 +171,11 @@ namespace uMod.Agent.Modules
             return true;
         }
 
+        /// <summary>
+        /// Formats the specified length in bytes to KiB, MiB or GiB
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string FormatContentLength(long length)
         {
             if (length < 1 << 10)
