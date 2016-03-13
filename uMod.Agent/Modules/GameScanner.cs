@@ -6,6 +6,7 @@ using System.Linq;
 
 using uMod.Agent.UI;
 using uMod.Agent.Commands;
+using uMod.Agent.Config;
 
 namespace uMod.Agent.Modules
 {
@@ -24,10 +25,15 @@ namespace uMod.Agent.Modules
         /// </summary>
         public string Version { get { return "dev 0.0.1"; } }
 
-        private static IDictionary<string, CommandHandler> commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
+        private IDictionary<string, CommandHandler> commands;
+
+        public GameScanner()
         {
-            {  "scan", cmd_scan }
-        };
+            commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
+            {
+                {  "scan", cmd_scan }
+            };
+        }
 
         /// <summary>
         /// Prints this module's info to the specified output device
@@ -69,14 +75,58 @@ namespace uMod.Agent.Modules
 
         #region Commands
 
-        private static bool cmd_scan(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
+        private bool cmd_scan(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
-            outputDevice.WriteStaticLine("Scanny wanny");
+            // Grab the manifest
+            Manifest manifest = ModuleRegistry.GetModule<ConfigSystem>().GetConfig<Manifest>(ctx, "Manifest");
+            if (manifest == null)
+            {
+                outputDevice.WriteStaticLine("$redFailed to load the manifest.");
+                ctx.ErrorFlag = true;
+                return true;
+            }
+
+            // Iterate each game
+            GameInfo locatedGame = null;
+            foreach (var game in manifest.Games)
+            {
+                if (ScanForGame(ctx, game))
+                {
+                    locatedGame = game;
+                    break;
+                }
+            }
+            if (locatedGame == null)
+            {
+                outputDevice.WriteStaticLine("$redNo recognised games found in current directory.");
+                ctx.ErrorFlag = true;
+                return true;
+            }
+
+            outputDevice.WriteStaticLine($"$whiteIdentified game $green{locatedGame.Name}$white.");
 
             // Done
             return true;
         }
 
+        
+
         #endregion
+
+        private bool ScanForGame(CommandContext ctx, GameInfo gameInfo)
+        {
+            // Sanity check
+            var scanData = gameInfo.ScanData;
+            if (scanData == null) return false;
+
+            // Check that all files exist
+            foreach (var file in scanData.KeyFiles)
+            {
+                string path = Path.Combine(ctx.WorkingDirectory, file.Path);
+                if (!File.Exists(path)) { return false; }
+            }
+
+            return true;
+        }
     }
 }

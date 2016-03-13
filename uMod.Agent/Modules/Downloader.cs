@@ -23,10 +23,15 @@ namespace uMod.Agent.Modules
         /// </summary>
         public string Version { get { return "dev 0.0.1"; } }
 
-        private static IDictionary<string, CommandHandler> commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
+        private IDictionary<string, CommandHandler> commands;
+
+        public Downloader()
         {
-            {  "fetch", cmd_fetch }
-        };
+            commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
+            {
+                {  "fetch", cmd_fetch }
+            };
+        }
 
         /// <summary>
         /// Prints this module's info to the specified output device
@@ -68,7 +73,7 @@ namespace uMod.Agent.Modules
 
         #region Commands
 
-        private static bool cmd_fetch(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
+        private bool cmd_fetch(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
             // Identify URL
             string url = cmd.GetNamedArg("url");
@@ -109,10 +114,9 @@ namespace uMod.Agent.Modules
             }
             outPath = Path.GetFullPath(Path.Combine(ctx.WorkingDirectory, outPath));
 
-            // For security, do NOT accept paths above the executable's location
-            string exeLoc = Path.GetFullPath(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location));
-            if (outPath.Length < exeLoc.Length || !string.Equals(outPath.Substring(0, exeLoc.Length), exeLoc, StringComparison.OrdinalIgnoreCase))
-            {
+            // Security check the output path
+            if (!ModuleRegistry.GetModule<FileSystem>().SecurityCheck(outPath))
+            { 
                 outputDevice.WriteStaticLine("$redDestination path blocked due to security reasons.");
                 ctx.ErrorFlag = true;
                 return true;

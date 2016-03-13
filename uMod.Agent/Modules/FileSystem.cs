@@ -24,11 +24,16 @@ namespace uMod.Agent.Modules
         /// </summary>
         public string Version { get { return "dev 0.0.1"; } }
 
-        private static IDictionary<string, CommandHandler> commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
+        private IDictionary<string, CommandHandler> commands;
+
+        public FileSystem()
         {
-            {  "ls", cmd_ls },
-            {  "cd", cmd_cd }
-        };
+            commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
+            {
+                {  "ls", cmd_ls },
+                {  "cd", cmd_cd }
+            };
+        }
 
         /// <summary>
         /// Prints this module's info to the specified output device
@@ -70,7 +75,7 @@ namespace uMod.Agent.Modules
 
         #region Commands
 
-        private static bool cmd_ls(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
+        private bool cmd_ls(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
             // Find directories
             foreach (string dir in Directory.EnumerateDirectories(ctx.WorkingDirectory).OrderBy(x => x))
@@ -88,7 +93,7 @@ namespace uMod.Agent.Modules
             return true;
         }
 
-        private static bool cmd_cd(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
+        private bool cmd_cd(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
             if (cmd.SimpleArgs.Length == 0)
             {
@@ -115,6 +120,29 @@ namespace uMod.Agent.Modules
             }
 
             // Done
+            return true;
+        }
+
+        #endregion
+
+        #region API
+
+        /// <summary>
+        /// Checks if the specified path is save to write to.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool SecurityCheck(string path)
+        {
+            string exeLoc = Path.GetFullPath(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location));
+            if (path.Length < exeLoc.Length || !string.Equals(path.Substring(0, exeLoc.Length), exeLoc, StringComparison.OrdinalIgnoreCase))
+            {
+                exeLoc = Environment.CurrentDirectory;
+                if (path.Length < exeLoc.Length || !string.Equals(path.Substring(0, exeLoc.Length), exeLoc, StringComparison.OrdinalIgnoreCase))
+                {
+                    return false;
+                }
+            }
             return true;
         }
 

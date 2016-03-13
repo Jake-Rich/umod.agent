@@ -1,0 +1,19 @@
+﻿{
+  "Games": [
+    {
+      "Name": "Rust",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "RustDedicated.exe",
+            "Hash": null
+          },
+          {
+            "Path": "RustDedicated_Data/Managed/Assembly-CSharp.dll",
+            "Hash": null
+          }
+        ]
+      }
+    }
+  ]
+}

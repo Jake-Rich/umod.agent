@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace uMod.Agent.Modules
 {
@@ -12,9 +13,15 @@ namespace uMod.Agent.Modules
         {
             new Agent(), // Core agent module
             new FileSystem(), // File system module
+            new ConfigSystem(), // Config system module
             new GameScanner(), // Game scanner module
             new Downloader() // Resource downloader module
         };
+
+        public static T GetModule<T>() where T : class
+        {
+            return Modules.SingleOrDefault(m => m is T) as T;
+        }
 
     }
 }

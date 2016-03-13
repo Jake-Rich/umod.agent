@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Configs\uMod.Manifest.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\uMod.Agent\uMod.Agent.csproj">
