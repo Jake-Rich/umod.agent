@@ -1,15 +1,181 @@
 ﻿{
   "Games": [
     {
+      "Name": "7 Days to Die",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "7DaysToDieServer.exe",
+            "Hash": null
+          },
+          {
+            "Path": "7DaysToDieServer.x86",
+            "Hash": null
+          },
+          {
+            "Path": "7DaysToDieServer.x86_64",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Blockstorm",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "Blockstorm.exe",
+            "Hash": null
+          },
+          {
+            "Path": "Blockstorm.x86",
+            "Hash": null
+          },
+          {
+            "Path": "Blockstorm.x86_64",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Hide & Hold Out",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "H2o.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Hurtworld",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "Hurtworld.exe",
+            "Hash": null
+          },
+          {
+            "Path": "Hurtworld.x86_64",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Medieval Engineers",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "MedievalEngineersDedicated.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Nomad",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "NomadServer.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Planet Explorers",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "PE_Server.exe",
+            "Hash": null
+          },
+          {
+            "Path": "PE_Server.x86",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Reign of Kings",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "ROK.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
       "Name": "Rust",
       "ScanData": {
         "KeyFiles": [
           {
-            "Path": "RustDedicated.exe",
+            "Path": "RustDedicated",
             "Hash": null
           },
           {
-            "Path": "RustDedicated_Data/Managed/Assembly-CSharp.dll",
+            "Path": "RustDedicated.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Rust Legacy",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "rust_server.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Space Engineers",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "SpaceEngineersDedicated.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Terraria",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "TerrariaServer.exe",
+            "Hash": null
+          }
+        ]
+      },
+    {
+      "Name": "The Forest",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "TheForest.exe",
+            "Hash": null
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Unturned",
+      "ScanData": {
+        "KeyFiles": [
+          {
+            "Path": "Unturned.exe",
             "Hash": null
           }
         ]
