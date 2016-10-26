@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace uMod.Agent.Modules
@@ -18,10 +17,6 @@ namespace uMod.Agent.Modules
             new Downloader() // Resource downloader module
         };
 
-        public static T GetModule<T>() where T : class
-        {
-            return Modules.SingleOrDefault(m => m is T) as T;
-        }
-
+        public static T GetModule<T>() where T : class => Modules.SingleOrDefault(m => m is T) as T;
     }
 }

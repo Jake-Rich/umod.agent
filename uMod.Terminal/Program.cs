@@ -22,47 +22,39 @@ namespace uMod.Terminal
         public static void Main(string[] args)
         {
             // Setup output device
-            ConsoleOutputDevice outputDevice = new ConsoleOutputDevice();
+            var outputDevice = new ConsoleOutputDevice();
 
             // Setup engine
-            CommandEngine engine = new CommandEngine(outputDevice);
-            engine.Context = new CommandContext
+            var engine = new CommandEngine(outputDevice)
             {
-                WorkingDirectory = Path.GetFullPath("."),
-                Terminate = false
+                Context = new CommandContext { WorkingDirectory = Path.GetFullPath("."), Terminate = false }
             };
 
             // Register all modules
-            foreach (IModule module in ModuleRegistry.Modules)
+            foreach (var module in ModuleRegistry.Modules)
             {
                 module.RegisterCommands(engine);
                 module.PrintInfo(outputDevice, true);
             }
 
             // Parse args
-            Command cmdLine = new Command(Environment.CommandLine);
+            var cmdLine = new Command(Environment.CommandLine);
 
             // If the command is empty, fallback to our default one
-            if (cmdLine.NamedArgCount == 0 && cmdLine.SimpleArgs.Length == 0)
-            {
-                cmdLine = defaultCommand;
-            }
+            if (cmdLine.NamedArgCount == 0 && cmdLine.SimpleArgs.Length == 0) cmdLine = defaultCommand;
 
             // Run commands?
-            string runCmd = cmdLine.GetNamedArg("run");
+            var runCmd = cmdLine.GetNamedArg("run");
             if (!string.IsNullOrEmpty(runCmd))
             {
-                string[] cmdList = runCmd.Split(';');
-                for (int i = 0; i < cmdList.Length; i++)
+                var cmdList = runCmd.Split(';');
+                for (var i = 0; i < cmdList.Length; i++)
                 {
                     // Write
-                    outputDevice.WriteStaticLine($"$cyan${Path.GetFileName(engine.Context.WorkingDirectory)}/$white: {cmdList[i]}");
+                    outputDevice.WriteStaticLine($"$cyan{Path.GetFileName(engine.Context.WorkingDirectory)}/$white: {cmdList[i]}");
 
                     // Handle command
-                    if (!engine.ExecuteCommand(cmdList[i]))
-                    {
-                        outputDevice.WriteStaticLine("$redUnknown command!");
-                    }
+                    if (!engine.ExecuteCommand(cmdList[i])) outputDevice.WriteStaticLine("$redUnknown command");
                 }
             }
 
@@ -75,21 +67,17 @@ namespace uMod.Terminal
                     // Input prompt
                     Console.SetCursorPosition(0, Console.CursorTop + 1);
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write($"${Path.GetFileName(engine.Context.WorkingDirectory)}/");
+                    Console.Write($"{Path.GetFileName(engine.Context.WorkingDirectory)}/");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write(": ");
-                    string line = Console.ReadLine();
+                    var line = Console.ReadLine();
 
                     // Write
-                    outputDevice.WriteStaticLine($"$cyan${Path.GetFileName(engine.Context.WorkingDirectory)}/$white: {line}");
+                    outputDevice.WriteStaticLine($"$cyan{Path.GetFileName(engine.Context.WorkingDirectory)}/$white: {line}");
 
                     // Handle command
                     engine.Context.ErrorFlag = false;
-                    if (!engine.ExecuteCommand(line))
-                    {
-                        outputDevice.WriteStaticLine("$redUnknown command!");
-                    }
-
+                    if (!engine.ExecuteCommand(line)) outputDevice.WriteStaticLine("$redUnknown command");
                 }
             }
 

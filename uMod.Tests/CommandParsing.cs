@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using uMod.Agent;
 
@@ -17,7 +16,7 @@ namespace uMod.Tests
         [TestMethod]
         public void CommandParsing_BasicArgs()
         {
-            Command cmd = new Command("testcmd thing other_thing \"escaped thing\" 10 \"escaped \\\"quoted\\\" string\"");
+            var cmd = new Command("testcmd thing other_thing \"escaped thing\" 10 \"escaped \\\"quoted\\\" string\"");
 
             Assert.AreEqual("testcmd", cmd.Verb);
             Assert.AreEqual(5, cmd.SimpleArgs.Length);
@@ -34,7 +33,7 @@ namespace uMod.Tests
         [TestMethod]
         public void CommandParsing_NamedArgs()
         {
-            Command cmd = new Command("testcmd key1:value key2:\"escaped value\" key3:stuff:things");
+            var cmd = new Command("testcmd key1:value key2:\"escaped value\" key3:stuff:things");
 
             Assert.AreEqual("testcmd", cmd.Verb);
             Assert.AreEqual(3, cmd.NamedArgCount);
@@ -49,7 +48,7 @@ namespace uMod.Tests
         [TestMethod]
         public void CommandParsing_CaseInsensitivity()
         {
-            Command cmd = new Command("TestCMD Key1:value key1:realValue THING:OTHERTHING");
+            var cmd = new Command("TestCMD Key1:value key1:realValue THING:OTHERTHING");
 
             Assert.AreEqual("testcmd", cmd.Verb);
             Assert.AreEqual(2, cmd.NamedArgCount);
@@ -62,7 +61,7 @@ namespace uMod.Tests
         [TestMethod]
         public void CommandParsing_ColonInEscapedNamedArg()
         {
-            Command cmd = new Command(". run:\"scan select:true;patch;launch\"");
+            var cmd = new Command(". run:\"scan select:true;patch;launch\"");
 
             Assert.AreEqual(".", cmd.Verb);
             Assert.AreEqual(1, cmd.NamedArgCount);

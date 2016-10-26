@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using uMod.Agent.Commands;
 using uMod.Agent.UI;
@@ -51,20 +50,14 @@ namespace uMod.Agent
         /// </summary>
         /// <param name="verb"></param>
         /// <param name="handler"></param>
-        public void RegisterHandler(string verb, ICommandHandler handler)
-        {
-            handlers.Add(verb, handler);
-        }
+        public void RegisterHandler(string verb, ICommandHandler handler) => handlers.Add(verb, handler);
 
         /// <summary>
         /// Executes the specified command
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public bool ExecuteCommand(string str)
-        {
-            return ExecuteCommand(new Command(str));
-        }
+        public bool ExecuteCommand(string str) => ExecuteCommand(new Command(str));
 
         /// <summary>
         /// Executes the specified command
@@ -74,10 +67,7 @@ namespace uMod.Agent
         public bool ExecuteCommand(Command cmd)
         {
             ICommandHandler handler;
-            if (handlers.TryGetValue(cmd.Verb, out handler))
-                return handler.Handle(Context, cmd, outputDevice);
-            else
-                return false;
+            return handlers.TryGetValue(cmd.Verb, out handler) && handler.Handle(Context, cmd, outputDevice);
         }
     }
 }

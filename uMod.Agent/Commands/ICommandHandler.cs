@@ -1,6 +1,4 @@
-﻿using System;
-
-using uMod.Agent.UI;
+﻿using uMod.Agent.UI;
 
 namespace uMod.Agent.Commands
 {
@@ -21,6 +19,7 @@ namespace uMod.Agent.Commands
         /// <summary>
         /// Handles the specified command
         /// </summary>
+        /// <param name="ctx"></param>
         /// <param name="cmd">The command to handle</param>
         /// <param name="outputDevice">The device to write output to</param>
         /// <returns>True if handled, false if not</returns>

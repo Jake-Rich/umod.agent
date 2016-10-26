@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.IO;
+using System.Net;
 
 using uMod.Agent.UI;
 using uMod.Agent.Commands;
@@ -9,19 +9,19 @@ using uMod.Agent.Commands;
 namespace uMod.Agent.Modules
 {
     /// <summary>
-    /// Contains methods responsible for fetching remote resources.
+    /// Contains methods responsible for fetching remote resources
     /// </summary>
     public sealed class Downloader : IModule, ICommandHandler
     {
         /// <summary>
         /// Gets the name of this module
         /// </summary>
-        public string Name { get { return "Downloader"; } }
+        public string Name => "Downloader";
 
         /// <summary>
         /// Gets the version of this module
         /// </summary>
-        public string Version { get { return "dev 0.0.1"; } }
+        public string Version => "0.0.1";
 
         private IDictionary<string, CommandHandler> commands;
 
@@ -29,7 +29,7 @@ namespace uMod.Agent.Modules
         {
             commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
             {
-                {  "fetch", cmd_fetch }
+                { "fetch", cmd_fetch }
             };
         }
 
@@ -40,10 +40,7 @@ namespace uMod.Agent.Modules
         /// <param name="init">Is the session just starting?</param>
         public void PrintInfo(IOutputDevice outputDevice, bool init)
         {
-            if (!init)
-            {
-                outputDevice.WriteStaticLine($"$whiteModule $green{Name} $whiteversion $yellow{Version}");
-            }
+            if (!init) outputDevice.WriteStaticLine($"$whiteModule $green{Name} $whiteversion $yellow{Version}");
         }
 
         /// <summary>
@@ -52,23 +49,20 @@ namespace uMod.Agent.Modules
         /// <param name="commandEngine"></param>
         public void RegisterCommands(CommandEngine commandEngine)
         {
-            foreach (var key in commands.Keys)
-                commandEngine.RegisterHandler(key, this);
+            foreach (var key in commands.Keys) commandEngine.RegisterHandler(key, this);
         }
 
         /// <summary>
         /// Handles the specified command
         /// </summary>
+        /// <param name="ctx"></param>
         /// <param name="cmd">The command to handle</param>
         /// <param name="outputDevice">The device to write output to</param>
         /// <returns>True if handled, false if not</returns>
         public bool Handle(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
             CommandHandler handler;
-            if (commands.TryGetValue(cmd.Verb, out handler))
-                return handler(ctx, cmd, outputDevice);
-            else
-                return false;
+            return commands.TryGetValue(cmd.Verb, out handler) && handler(ctx, cmd, outputDevice);
         }
 
         #region Commands
@@ -76,8 +70,8 @@ namespace uMod.Agent.Modules
         private bool cmd_fetch(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
             // Identify URL
-            string url = cmd.GetNamedArg("url");
-            int nextBasicArg = 0;
+            var url = cmd.GetNamedArg("url");
+            var nextBasicArg = 0;
             if (string.IsNullOrEmpty(url))
             {
                 if (cmd.SimpleArgs.Length <= nextBasicArg)
@@ -86,10 +80,7 @@ namespace uMod.Agent.Modules
                     ctx.ErrorFlag = true;
                     return true;
                 }
-                else
-                {
-                    url = cmd.SimpleArgs[nextBasicArg++];
-                }
+                url = cmd.SimpleArgs[nextBasicArg++];
             }
 
             if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
@@ -100,23 +91,14 @@ namespace uMod.Agent.Modules
             }
 
             // Identify output file
-            string outPath = cmd.GetNamedArg("out");
+            var outPath = cmd.GetNamedArg("out");
             if (string.IsNullOrEmpty(outPath))
-            {
-                if (cmd.SimpleArgs.Length <= nextBasicArg)
-                {
-                    outPath = Path.GetFileName(url);
-                }
-                else
-                {
-                    outPath = cmd.SimpleArgs[nextBasicArg++];
-                }
-            }
+                outPath = cmd.SimpleArgs.Length <= nextBasicArg ? Path.GetFileName(url) : cmd.SimpleArgs[nextBasicArg++];
             outPath = Path.GetFullPath(Path.Combine(ctx.WorkingDirectory, outPath));
 
             // Security check the output path
             if (!ModuleRegistry.GetModule<FileSystem>().SecurityCheck(outPath))
-            { 
+            {
                 outputDevice.WriteStaticLine("$redDestination path blocked due to security reasons.");
                 ctx.ErrorFlag = true;
                 return true;
@@ -126,33 +108,33 @@ namespace uMod.Agent.Modules
             try
             {
                 // Let UI know we're starting to do something
-                ILabel label = outputDevice.WriteLabel($"Requesting {url}...");
+                var label = outputDevice.WriteLabel($"Requesting {url}...");
 
                 // Create request, acquire response
-                WebRequest req = WebRequest.Create(url);
-                WebResponse response = req.GetResponse();
+                var req = WebRequest.Create(url);
+                var response = req.GetResponse();
 
                 // Let UI know so far so good
                 label.Text = $"Downloading {url}...";
                 sizeLabel = outputDevice.WriteLabel("");
 
                 // Did the server give us a content size? If so, add a progress bar
-                IProgressBar progBar = response.ContentLength > 0 ? outputDevice.WriteProgressBar() : null;
-                string totalSize = response.ContentLength > 0 ? FormatContentLength(response.ContentLength) : "unknown";
+                var progBar = response.ContentLength > 0 ? outputDevice.WriteProgressBar() : null;
+                var totalSize = response.ContentLength > 0 ? FormatContentLength(response.ContentLength) : "unknown";
 
                 // Write to file
                 using (var outStream = File.OpenWrite(outPath))
                 {
                     // Get the response stream and allocate a buffer
                     var stream = response.GetResponseStream();
-                    byte[] buffer = new byte[1024];
-                    
+                    var buffer = new byte[1024];
+
                     // Iterate for as long as we can
                     long totalRead = 0;
                     while (stream.CanRead)
                     {
                         // Read into the buffer, write to file, check eos (end of stream)
-                        int read = stream.Read(buffer, 0, 1024);
+                        var read = stream.Read(buffer, 0, 1024);
                         outStream.Write(buffer, 0, read);
                         if (read == 0) break;
                         totalRead += read;
@@ -162,16 +144,13 @@ namespace uMod.Agent.Modules
                         sizeLabel.Text = $"{FormatContentLength(totalRead)} / {totalSize}";
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
                 outputDevice.WriteStaticLine("Unknown error when fetching resource:");
                 outputDevice.WriteStaticLine(ex.ToString());
-                if (sizeLabel != null)
-                {
-                    sizeLabel.Text = "$redCancelled";
-                }
+                if (sizeLabel != null) sizeLabel.Text = "$redCancelled";
                 ctx.ErrorFlag = true;
                 return true;
             }
@@ -192,18 +171,15 @@ namespace uMod.Agent.Modules
             {
                 return $"{length} B";
             }
-            else if (length < 1 << 20)
+            if (length < 1 << 20)
             {
                 return $"{length >> 10}{(length & 0x3FF) / 1024.0f:.00} KiB";
             }
-            else if (length < 1 << 30)
+            if (length < 1 << 30)
             {
                 return $"{length >> 10}{((length & 0xFFFFF) >> 10) / 1024.0f:.00} MiB";
             }
-            else
-            {
-                return $"{length >> 10}{((length & 0x3FFFFFFF) >> 10) / 1024.0f:.00} GiB";
-            }
+            return $"{length >> 10}{((length & 0x3FFFFFFF) >> 10) / 1024.0f:.00} GiB";
         }
 
         #endregion

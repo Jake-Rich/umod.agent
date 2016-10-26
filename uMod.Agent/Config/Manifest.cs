@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace uMod.Agent.Config
+﻿namespace uMod.Agent.Config
 {
     /// <summary>
-    /// Contains details used to scan for moddable games.
+    /// Contains details used to scan for moddable games
     /// </summary>
     public sealed class Manifest
     {
@@ -14,7 +12,7 @@ namespace uMod.Agent.Config
     }
 
     /// <summary>
-    /// Contains details to identify an individual game.
+    /// Contains details to identify an individual game
     /// </summary>
     public sealed class GameInfo
     {
@@ -30,7 +28,7 @@ namespace uMod.Agent.Config
     }
 
     /// <summary>
-    /// Contains details of how to scan for the presense of a particular game.
+    /// Contains details of how to scan for the presense of a particular game
     /// </summary>
     public sealed class ScanInfo
     {
@@ -38,7 +36,7 @@ namespace uMod.Agent.Config
     }
 
     /// <summary>
-    /// Contains details of an individual file.
+    /// Contains details of an individual file
     /// </summary>
     public sealed class ScanFileInfo
     {

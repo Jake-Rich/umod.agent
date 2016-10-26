@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using uMod.Agent.UI;
 
@@ -45,20 +44,13 @@ namespace uMod.Terminal.UI
         /// <summary>
         /// Gets the height of this progress bar in text rows
         /// </summary>
-        public override int Height
-        {
-            get
-            {
-                return 1;
-            }
-        }
+        public override int Height => 1;
 
         /// <summary>
         /// Initialises a new instance of the ProgressBar class
         /// </summary>
         /// <param name="console"></param>
-        public ProgressBar(ConsoleOutputDevice console)
-            : base(console)
+        public ProgressBar(ConsoleOutputDevice console) : base(console)
         {
             progress = 0.0f;
             width = ConsoleOutputDevice.Columns - 10;
@@ -78,9 +70,9 @@ namespace uMod.Terminal.UI
             // Render
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write('[');
-            int toDraw = (int)Math.Floor(progress * width + 0.5f);
-            for (int i = 0; i < toDraw; i++) Console.Write('=');
-            for (int i = 0; i < width - toDraw; i++) Console.Write(' ');
+            var toDraw = (int)Math.Floor(progress * width + 0.5f);
+            for (var i = 0; i < toDraw; i++) Console.Write('=');
+            for (var i = 0; i < width - toDraw; i++) Console.Write(' ');
             Console.Write(']');
             Console.Write($" {Math.Floor(progress * 100.0f + 0.5f)}%");
         }

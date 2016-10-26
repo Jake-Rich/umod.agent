@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace uMod.Agent.UI
+﻿namespace uMod.Agent.UI
 {
     /// <summary>
     /// Represents a device capable of delivering output to the user
@@ -22,7 +20,6 @@ namespace uMod.Agent.UI
         /// <summary>
         /// Writes a progress bar to the device
         /// </summary>
-        /// <param name="initialText"></param>
         IProgressBar WriteProgressBar();
     }
 }

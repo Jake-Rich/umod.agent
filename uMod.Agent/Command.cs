@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace uMod.Agent
 {
@@ -27,24 +25,12 @@ namespace uMod.Agent
         /// <summary>
         /// Gets the number of named args
         /// </summary>
-        public int NamedArgCount
-        {
-            get
-            {
-                return namedArgs.Count;
-            }
-        }
+        public int NamedArgCount => namedArgs.Count;
 
         /// <summary>
         /// Gets all named arg keys
         /// </summary>
-        public IEnumerable<string> NamedArgKeys
-        {
-            get
-            {
-                return namedArgs.Keys;
-            }
-        }
+        public IEnumerable<string> NamedArgKeys => namedArgs.Keys;
 
         /// <summary>
         /// Initialises a new instance of the Command class
@@ -71,19 +57,19 @@ namespace uMod.Agent
         {
             // Iterate until we hit a whitespace
             char c;
-            int i = 0;
+            var i = 0;
             while (i < src.Length && !char.IsWhiteSpace(c = src[i])) i++;
 
             // Found the verb
             Verb = src.Substring(0, i).ToLowerInvariant();
 
             // Setup temporary objects
-            List<string> basicArgs = new List<string>();
+            var basicArgs = new List<string>();
 
             // Crude FSM
-            ParseState curState = ParseState.None;
+            var curState = ParseState.None;
             StringBuilder sb = null;
-            int nestState = 0;
+            var nestState = 0;
             string namedArgKey = null;
             while (i <= src.Length)
             {
@@ -211,15 +197,11 @@ namespace uMod.Agent
                     default:
 
                         throw new NotImplementedException();
-
                 }
             }
 
             // Check state
-            if (curState != ParseState.None)
-            {
-                throw new Exception($"Unexpected end of string (was in state '{curState}')");
-            }
+            if (curState != ParseState.None) throw new Exception($"Unexpected end of string (was in state '{curState}')");
 
             // Store basic args
             SimpleArgs = basicArgs.ToArray();
@@ -231,14 +213,12 @@ namespace uMod.Agent
         /// Gets the specified case-insensitive named argument
         /// </summary>
         /// <param name="key"></param>
+        /// <param name="def"></param>
         /// <returns></returns>
         public string GetNamedArg(string key, string def = null)
         {
             string result;
-            if (namedArgs.TryGetValue(key, out result))
-                return result;
-            else
-                return def;
+            return namedArgs.TryGetValue(key, out result) ? result : def;
         }
     }
 }

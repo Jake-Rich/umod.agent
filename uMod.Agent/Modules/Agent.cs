@@ -1,23 +1,21 @@
-﻿using System;
-
-using uMod.Agent.UI;
+﻿using uMod.Agent.UI;
 
 namespace uMod.Agent.Modules
 {
     /// <summary>
-    /// The core agent module
+    /// The agent module
     /// </summary>
     public sealed class Agent : IModule
     {
         /// <summary>
         /// Gets the name of this module
         /// </summary>
-        public string Name { get { return "Core Agent"; } }
+        public string Name => "Agent";
 
         /// <summary>
         /// Gets the version of this module
         /// </summary>
-        public string Version { get { return "dev 0.0.1"; } }
+        public string Version => "0.0.1";
 
         /// <summary>
         /// Prints this module's info to the specified output device
@@ -27,13 +25,9 @@ namespace uMod.Agent.Modules
         public void PrintInfo(IOutputDevice outputDevice, bool init)
         {
             if (init)
-            {
                 outputDevice.WriteStaticLine($"$greenuMod {Name} $whiteversion $yellow{Version}");
-            }
             else
-            {
                 outputDevice.WriteStaticLine($"$whiteModule $green{Name} $whiteversion $yellow{Version}");
-            }
         }
 
         /// <summary>
@@ -42,7 +36,6 @@ namespace uMod.Agent.Modules
         /// <param name="commandEngine"></param>
         public void RegisterCommands(CommandEngine commandEngine)
         {
-
         }
     }
 }

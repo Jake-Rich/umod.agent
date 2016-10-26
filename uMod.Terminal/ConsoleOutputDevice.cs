@@ -40,20 +40,15 @@ namespace uMod.Terminal
         /// Writes a non-changing line of text to the device
         /// </summary>
         /// <param name="message"></param>
-        public void WriteStaticLine(string message)
-        {
-            WriteLabel(message);
-        }
+        public void WriteStaticLine(string message) => WriteLabel(message);
 
         /// <summary>
         /// Writes a mutable label to the device
         /// </summary>
-        /// <param name="label"></param>
+        /// <param name="initialText"></param>
         public ILabel WriteLabel(string initialText)
         {
-            Label lbl = new Label(this);
-            lbl.ImmediateMode = false;
-            lbl.Text = initialText;
+            var lbl = new Label(this) { ImmediateMode = false, Text = initialText };
             AddUIComponent(lbl);
             lbl.ImmediateMode = true;
             return lbl;
@@ -62,11 +57,9 @@ namespace uMod.Terminal
         /// <summary>
         /// Writes a progress bar to the device
         /// </summary>
-        /// <param name="label"></param>
         public IProgressBar WriteProgressBar()
         {
-            ProgressBar pbar = new ProgressBar(this);
-            pbar.ImmediateMode = false;
+            var pbar = new ProgressBar(this) { ImmediateMode = false };
             AddUIComponent(pbar);
             pbar.ImmediateMode = true;
             return pbar;
@@ -92,21 +85,21 @@ namespace uMod.Terminal
             Console.Clear();
 
             // Find y offset
-            int yOffset = Console.BufferHeight - totalHeight;
+            var yOffset = Console.BufferHeight - totalHeight;
 
             // Find elements to cut off
-            int curY = yOffset;
+            var curY = yOffset;
             int i;
             for (i = 0; i < uilist.Count; i++)
             {
-                UIComponent component = uilist[i];
-                int bottom = curY + component.Height;
+                var component = uilist[i];
+                var bottom = curY + component.Height;
                 if (bottom > 0) break;
             }
-            int cnt = i;
+            var cnt = i;
             for (i = 0; i < cnt; i++)
             {
-                UIComponent component = uilist[i];
+                var component = uilist[i];
                 uilist.RemoveAt(i);
                 totalHeight -= component.Height;
             }
@@ -119,7 +112,7 @@ namespace uMod.Terminal
             curY = yOffset;
             for (i = 0; i < uilist.Count; i++)
             {
-                UIComponent component = uilist[i];
+                var component = uilist[i];
                 component.Render(0, curY);
                 curY += component.Height;
             }

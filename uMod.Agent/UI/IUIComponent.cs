@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace uMod.Agent.UI
+﻿namespace uMod.Agent.UI
 {
     /// <summary>
     /// Represents a generic UI component

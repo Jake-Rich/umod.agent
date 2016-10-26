@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace uMod.Agent.Commands
+﻿namespace uMod.Agent.Commands
 {
     /// <summary>
     /// A context in which commands may run

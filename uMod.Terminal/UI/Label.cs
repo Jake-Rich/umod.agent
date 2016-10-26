@@ -16,13 +16,7 @@ namespace uMod.Terminal.UI
         /// <summary>
         /// Gets the height of this label in text rows
         /// </summary>
-        public override int Height
-        {
-            get
-            {
-                return 1 + ((text.Length-1) / ConsoleOutputDevice.Columns);
-            }
-        }
+        public override int Height => 1 + ((text.Length-1) / ConsoleOutputDevice.Columns);
 
         /// <summary>
         /// Gets or sets the text stored within this label
@@ -81,12 +75,12 @@ namespace uMod.Terminal.UI
             Console.SetCursorPosition(x, y);
 
             // Iterate each character
-            string text = Text;
-            int state = 0;
-            int renderPos = 0;
-            for (int i = 0; i < text.Length; i++)
+            var text = Text;
+            var state = 0;
+            var renderPos = 0;
+            for (var i = 0; i < text.Length; i++)
             {
-                char c = text[i];
+                var c = text[i];
                 switch (state)
                 {
                     case 0:
@@ -106,7 +100,7 @@ namespace uMod.Terminal.UI
                         }
                         else
                         {
-                            string seg = text.Substring(renderPos + 1, i - renderPos);
+                            var seg = text.Substring(renderPos + 1, i - renderPos);
                             Action mutator;
                             if (mutatorDict.TryGetValue(seg, out mutator))
                             {

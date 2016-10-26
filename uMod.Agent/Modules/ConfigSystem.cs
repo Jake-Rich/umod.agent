@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using System.Linq;
 
 using Newtonsoft.Json;
 
@@ -12,23 +10,22 @@ using uMod.Agent.Commands;
 namespace uMod.Agent.Modules
 {
     /// <summary>
-    /// Contains methods responsible for general configuration.
+    /// Contains methods responsible for general configuration
     /// </summary>
     public sealed class ConfigSystem : IModule, ICommandHandler
     {
         /// <summary>
         /// Gets the name of this module
         /// </summary>
-        public string Name { get { return "Config"; } }
+        public string Name => "Config";
 
         /// <summary>
         /// Gets the version of this module
         /// </summary>
-        public string Version { get { return "dev 0.0.1"; } }
+        public string Version => "0.0.1";
 
         private IDictionary<string, CommandHandler> commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
         {
-            
         };
 
         /// <summary>
@@ -38,10 +35,7 @@ namespace uMod.Agent.Modules
         /// <param name="init">Is the session just starting?</param>
         public void PrintInfo(IOutputDevice outputDevice, bool init)
         {
-            if (!init)
-            {
-                outputDevice.WriteStaticLine($"$whiteModule $green{Name} $whiteversion $yellow{Version}");
-            }
+            if (!init) outputDevice.WriteStaticLine($"$whiteModule $green{Name} $whiteversion $yellow{Version}");
         }
 
         /// <summary>
@@ -50,8 +44,7 @@ namespace uMod.Agent.Modules
         /// <param name="commandEngine"></param>
         public void RegisterCommands(CommandEngine commandEngine)
         {
-            foreach (var key in commands.Keys)
-                commandEngine.RegisterHandler(key, this);
+            foreach (var key in commands.Keys) commandEngine.RegisterHandler(key, this);
         }
 
         /// <summary>
@@ -63,10 +56,7 @@ namespace uMod.Agent.Modules
         public bool Handle(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
             CommandHandler handler;
-            if (commands.TryGetValue(cmd.Verb, out handler))
-                return handler(ctx, cmd, outputDevice);
-            else
-                return false;
+            return commands.TryGetValue(cmd.Verb, out handler) && handler(ctx, cmd, outputDevice);
         }
 
         #region Commands
@@ -79,13 +69,14 @@ namespace uMod.Agent.Modules
         /// Gets the configuration for the specified name.
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
         /// <param name="name"></param>
         /// <returns></returns>
         public T GetConfig<T>(CommandContext context, string name) where T : class
         {
-            string path = Path.Combine(context.WorkingDirectory, $"uMod.{name}.json");
-            if (!ModuleRegistry.GetModule<FileSystem>().SecurityCheck(path)) { return null; }
-            if (!File.Exists(path)) { return null; }
+            var path = Path.Combine(context.WorkingDirectory, $"uMod.{name}.json");
+            if (!ModuleRegistry.GetModule<FileSystem>().SecurityCheck(path)) return null;
+            if (!File.Exists(path)) return null;
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
         }
 
