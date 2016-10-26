@@ -3,7 +3,7 @@
 namespace uMod.Agent.Modules
 {
     /// <summary>
-    /// The agent module
+    /// The core agent module
     /// </summary>
     public sealed class Agent : IModule
     {
@@ -24,10 +24,7 @@ namespace uMod.Agent.Modules
         /// <param name="init">Is the session just starting?</param>
         public void PrintInfo(IOutputDevice outputDevice, bool init)
         {
-            if (init)
-                outputDevice.WriteStaticLine($"$greenuMod {Name} $whiteversion $yellow{Version}");
-            else
-                outputDevice.WriteStaticLine($"$whiteModule $green{Name} $whiteversion $yellow{Version}");
+            if (init) outputDevice.WriteStaticLine($"$greenuMod {Name} $whiteversion $yellow{Version}");
         }
 
         /// <summary>
