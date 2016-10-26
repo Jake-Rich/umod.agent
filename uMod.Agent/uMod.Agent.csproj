@@ -53,6 +53,8 @@
     <Compile Include="Modules\ConfigSystem.cs" />
     <Compile Include="Modules\Downloader.cs" />
     <Compile Include="Modules\FileSystem.cs" />
+    <Compile Include="Modules\GameLauncher.cs" />
+    <Compile Include="Modules\GamePatcher.cs" />
     <Compile Include="Modules\GameScanner.cs" />
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\ModuleRegistry.cs" />

@@ -11,10 +11,12 @@ namespace uMod.Agent.Modules
         public static readonly IEnumerable<IModule> Modules = new IModule[]
         {
             new Agent(), // Core agent module
-            new FileSystem(), // File system module
             new ConfigSystem(), // Config system module
-            new GameScanner(), // Game scanner module
-            new Downloader() // Resource downloader module
+            new Downloader(), // Resource downloader module
+            new FileSystem(), // File system module
+            new GameLauncher(), // Game launcher module
+            new GamePatcher(), // Game patcher module
+            new GameScanner() // Game scanner module
         };
 
         public static T GetModule<T>() where T : class => Modules.SingleOrDefault(m => m is T) as T;
