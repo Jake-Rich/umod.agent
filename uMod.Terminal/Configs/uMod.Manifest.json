@@ -15,6 +15,10 @@
           {
             "Path": "7DaysToDieServer.x86_64",
             "Hash": null
+          },
+          {
+            "Path": "7DaysToDieServer_Data/Managed/Assembly-CSharp.dll",
+            "Hash": null
           }
         ]
       }
@@ -34,6 +38,10 @@
           {
             "Path": "Blockstorm.x86_64",
             "Hash": null
+          },
+          {
+            "Path": "Blockstorm_Data/Managed/Assembly-CSharp.dll",
+            "Hash": null
           }
         ]
       }
@@ -44,6 +52,10 @@
         "KeyFiles": [
           {
             "Path": "H2o.exe",
+            "Hash": null
+          },
+          {
+            "Path": "H2o_Data/Managed/Assembly-CSharp.dll",
             "Hash": null
           }
         ]
@@ -59,6 +71,10 @@
           },
           {
             "Path": "Hurtworld.x86_64",
+            "Hash": null
+          },
+          {
+            "Path": "Hurtworld_Data/Managed/Assembly-CSharp.dll",
             "Hash": null
           }
         ]
@@ -108,6 +124,10 @@
           {
             "Path": "ROK.exe",
             "Hash": null
+          },
+          {
+            "Path": "ROK_Data/Managed/Assembly-CSharp.dll",
+            "Hash": null
           }
         ]
       }
@@ -123,6 +143,10 @@
           {
             "Path": "RustDedicated.exe",
             "Hash": null
+          },
+          {
+            "Path": "RustDedicated_Data/Managed/Assembly-CSharp.dll",
+            "Hash": null
           }
         ]
       }
@@ -133,6 +157,10 @@
         "KeyFiles": [
           {
             "Path": "rust_server.exe",
+            "Hash": null
+          },
+          {
+            "Path": "rust_server_Data/Managed/Assembly-CSharp.dll",
             "Hash": null
           }
         ]
@@ -167,6 +195,10 @@
           {
             "Path": "TheForest.exe",
             "Hash": null
+          },
+          {
+            "Path": "TheForest_Data/Managed/Assembly-CSharp.dll",
+            "Hash": null
           }
         ]
       }
@@ -177,6 +209,10 @@
         "KeyFiles": [
           {
             "Path": "Unturned.exe",
+            "Hash": null
+          },
+          {
+            "Path": "Unturned_Data/Managed/Assembly-CSharp.dll",
             "Hash": null
           }
         ]
