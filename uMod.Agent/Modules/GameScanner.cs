@@ -80,21 +80,21 @@ namespace uMod.Agent.Modules
             }
 
             // Iterate each game
-            GameInfo locatedGame = null;
             foreach (var game in manifest.Games)
             {
                 if (!ScanForGame(ctx, game)) continue;
-                locatedGame = game;
+                ctx.LocatedGame = game;
                 break;
             }
-            if (locatedGame == null)
+
+            if (ctx.LocatedGame == null)
             {
                 outputDevice.WriteStaticLine("$redNo recognised games found in current directory");
                 ctx.ErrorFlag = true;
                 return true;
             }
 
-            outputDevice.WriteStaticLine($"$whiteIdentified game $green{locatedGame.Name}$white");
+            outputDevice.WriteStaticLine($"$whiteIdentified game $green{ctx.LocatedGame.Name}$white");
 
             // Done
             return true;

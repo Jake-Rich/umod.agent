@@ -1,4 +1,6 @@
-﻿namespace uMod.Agent.Commands
+﻿using uMod.Agent.Config;
+
+namespace uMod.Agent.Commands
 {
     /// <summary>
     /// A context in which commands may run
@@ -14,6 +16,11 @@
         /// Gets or sets the current working directory
         /// </summary>
         public string WorkingDirectory { get; set; }
+
+        /// <summary>
+        /// Gets or sets the logcated game
+        /// </summary>
+        public GameInfo LocatedGame { get; set; }
 
         /// <summary>
         /// Gets or sets if the session should be terminated
