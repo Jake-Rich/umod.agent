@@ -112,10 +112,10 @@ namespace uMod.Agent.Modules
             foreach (var file in scanData.KeyFiles)
             {
                 var path = Path.Combine(ctx.WorkingDirectory, file.Path);
-                if (!File.Exists(path)) return false;
+                if (File.Exists(path)) return true;
             }
 
-            return true;
+            return false;
         }
     }
 }
