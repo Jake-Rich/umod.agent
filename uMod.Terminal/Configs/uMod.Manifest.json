@@ -21,7 +21,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics -configfile=serverconfig.xml -dedicated"
     },
     {
       "Name": "Blockstorm",
@@ -44,7 +45,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics -config blockstorm.cfg"
     },
     {
       "Name": "Hide & Hold Out",
@@ -59,7 +61,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics"
     },
     {
       "Name": "Hurtworld",
@@ -78,7 +81,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics"
     },
     {
       "Name": "Medieval Engineers",
@@ -100,7 +104,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-clientVersion 0.92 -tcpLobby 149.202.51.185 25565"
     },
     {
       "Name": "Planet Explorers",
@@ -115,7 +120,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics"
     },
     {
       "Name": "Reign of Kings",
@@ -130,7 +136,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics -silentcrash"
     },
     {
       "Name": "Rust",
@@ -149,7 +156,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics"
     },
     {
       "Name": "Rust Legacy",
@@ -164,7 +172,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics"
     },
     {
       "Name": "Space Engineers",
@@ -175,7 +184,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-console -path config"
     },
     {
       "Name": "Terraria",
@@ -186,7 +196,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-config serverconfig.txt"
     },
     {
       "Name": "The Forest",
@@ -201,7 +212,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics"
     },
     {
       "Name": "Unturned",
@@ -216,7 +228,8 @@
             "Hash": null
           }
         ]
-      }
+      },
+      "LaunchArguments": "-batchmode -nographics"
     }
   ]
 }

@@ -25,6 +25,11 @@
         /// Scanning data for the game
         /// </summary>
         public ScanInfo ScanData;
+
+        /// <summary>
+        /// Command-line arguments used to launch
+        /// </summary>
+        public string LaunchArguments;
     }
 
     /// <summary>
