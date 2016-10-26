@@ -29,6 +29,7 @@ namespace uMod.Agent.Modules
         {
             commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
             {
+                { "detect", cmd_scan },
                 { "scan", cmd_scan }
             };
         }

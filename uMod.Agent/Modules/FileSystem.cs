@@ -30,7 +30,8 @@ namespace uMod.Agent.Modules
             commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
             {
                 { "ls", cmd_ls },
-                { "cd", cmd_cd }
+                { "cd", cmd_cd },
+                { "dir", cmd_ls }
             };
         }
 
