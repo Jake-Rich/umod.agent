@@ -79,7 +79,6 @@ namespace uMod.Agent.Modules
             foreach (var file in Directory.EnumerateFiles(ctx.WorkingDirectory).OrderBy(x => x))
                 outputDevice.WriteStaticLine($"$grayfile $white{Path.GetFileName(file)}");
 
-            // Done
             return true;
         }
 
@@ -109,7 +108,6 @@ namespace uMod.Agent.Modules
                 }
             }
 
-            // Done
             return true;
         }
 
@@ -118,13 +116,13 @@ namespace uMod.Agent.Modules
         #region API
 
         /// <summary>
-        /// Checks if the specified path is save to write to.
+        /// Checks if the specified path is save to write to
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
         public bool SecurityCheck(string path)
         {
-            var exeLoc = Path.GetFullPath(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location));
+            var exeLoc = Path.GetFullPath(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location));
             if (path.Length < exeLoc.Length || !string.Equals(path.Substring(0, exeLoc.Length), exeLoc, StringComparison.OrdinalIgnoreCase))
             {
                 exeLoc = Environment.CurrentDirectory;

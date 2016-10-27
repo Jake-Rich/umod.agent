@@ -13,7 +13,7 @@ namespace uMod.Terminal
     /// </summary>
     public static class Program
     {
-        private static Command defaultCommand = new Command(". run:\"scan select:true;patch;launch\"");
+        private static Command defaultCommand = new Command(". run:\"scan;patch;launch\"");
 
         /// <summary>
         /// Entry point

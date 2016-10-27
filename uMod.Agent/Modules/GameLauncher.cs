@@ -68,12 +68,11 @@ namespace uMod.Agent.Modules
 
         private bool cmd_launch(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
-            if (ctx.LocatedGame == null) ctx.Engine.ExecuteCommand("scan");
+            if (!ctx.Engine.ExecuteCommand("scan") || ctx.LocatedGame == null) return false;
 
             outputDevice.WriteStaticLine($"$whiteLaunching game $green{ctx.LocatedGame.Name}$white...");
             Process.Start(ctx.LocatedGame.ScanData.KeyFiles[0].Path, ctx.LocatedGame.LaunchArguments);
 
-            // Done
             return true;
         }
 

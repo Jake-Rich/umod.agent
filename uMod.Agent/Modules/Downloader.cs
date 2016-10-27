@@ -29,6 +29,7 @@ namespace uMod.Agent.Modules
         {
             commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
             {
+                { "download", cmd_fetch },
                 { "fetch", cmd_fetch }
             };
         }
@@ -131,7 +132,7 @@ namespace uMod.Agent.Modules
 
                     // Iterate for as long as we can
                     long totalRead = 0;
-                    while (stream.CanRead)
+                    while (stream != null && stream.CanRead)
                     {
                         // Read into the buffer, write to file, check eos (end of stream)
                         var read = stream.Read(buffer, 0, 1024);
@@ -155,7 +156,6 @@ namespace uMod.Agent.Modules
                 return true;
             }
 
-            // Done
             ctx.ErrorFlag = false;
             return true;
         }
