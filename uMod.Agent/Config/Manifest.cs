@@ -27,6 +27,11 @@
         public ScanInfo ScanData;
 
         /// <summary>
+        /// Steam data for the game
+        /// </summary>
+        public SteamInfo Steam;
+
+        /// <summary>
         /// Command-line arguments used to launch
         /// </summary>
         public string LaunchArguments;
@@ -38,6 +43,16 @@
     public sealed class ScanInfo
     {
         public ScanFileInfo[] KeyFiles;
+    }
+
+    /// <summary>
+    /// Contains details of how to scan for the presense of a particular game
+    /// </summary>
+    public sealed class SteamInfo
+    {
+        public int AppId;
+        public string Branch;
+        public string Login;
     }
 
     /// <summary>

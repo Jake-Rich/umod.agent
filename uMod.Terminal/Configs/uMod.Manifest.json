@@ -22,6 +22,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 294420,
+        "Branch": "public",
+        "Login": "anonymous"
+      },
       "LaunchArguments": "-batchmode -nographics -configfile=serverconfig.xml -dedicated"
     },
     {
@@ -46,6 +51,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 263060,
+        "Branch": "public",
+        "Login": null
+      },
       "LaunchArguments": "-batchmode -nographics -config blockstorm.cfg"
     },
     {
@@ -61,6 +71,11 @@
             "Hash": null
           }
         ]
+      },
+      "Steam": {
+        "AppId": 377610,
+        "Branch": "public",
+        "Login": "anonymous"
       },
       "LaunchArguments": "-batchmode -nographics"
     },
@@ -82,6 +97,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 405100,
+        "Branch": "public",
+        "Login": "anonymous"
+      },
       "LaunchArguments": "-batchmode -nographics"
     },
     {
@@ -93,6 +113,11 @@
             "Hash": null
           }
         ]
+      },
+      "Steam": {
+        "AppId": 367970,
+        "Branch": "public",
+        "Login": "anonymous"
       }
     },
     {
@@ -104,6 +129,11 @@
             "Hash": null
           }
         ]
+      },
+      "Steam": {
+        "AppId": 378370,
+        "Branch": "public",
+        "Login": null
       },
       "LaunchArguments": "-clientVersion 0.92 -tcpLobby 149.202.51.185 25565"
     },
@@ -121,6 +151,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 237870,
+        "Branch": "public",
+        "Login": null
+      },
       "LaunchArguments": "-batchmode -nographics"
     },
     {
@@ -136,6 +171,11 @@
             "Hash": null
           }
         ]
+      },
+      "Steam": {
+        "AppId": 381690,
+        "Branch": "public",
+        "Login": "anonymous"
       },
       "LaunchArguments": "-batchmode -nographics -silentcrash"
     },
@@ -157,6 +197,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 258550,
+        "Branch": "public",
+        "Login": "anonymous"
+      },
       "LaunchArguments": "-batchmode -nographics"
     },
     {
@@ -173,6 +218,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 258550,
+        "Branch": "legacy",
+        "Login": "anonymous"
+      },
       "LaunchArguments": "-batchmode -nographics"
     },
     {
@@ -185,6 +235,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 298740,
+        "Branch": "public",
+        "Login": "anonymous"
+      },
       "LaunchArguments": "-console -path config"
     },
     {
@@ -196,6 +251,11 @@
             "Hash": null
           }
         ]
+      },
+      "Steam": {
+        "AppId": 105600,
+        "Branch": "public",
+        "Login": null
       },
       "LaunchArguments": "-config serverconfig.txt"
     },
@@ -213,6 +273,11 @@
           }
         ]
       },
+      "Steam": {
+        "AppId": 242760,
+        "Branch": "public",
+        "Login": null
+      },
       "LaunchArguments": "-batchmode -nographics"
     },
     {
@@ -228,6 +293,11 @@
             "Hash": null
           }
         ]
+      },
+      "Steam": {
+        "AppId": 304930,
+        "Branch": "public",
+        "Login": null
       },
       "LaunchArguments": "-batchmode -nographics"
     }
