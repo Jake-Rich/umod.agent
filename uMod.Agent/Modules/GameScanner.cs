@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 
 using uMod.Agent.UI;
 using uMod.Agent.Commands;
@@ -30,6 +31,8 @@ namespace uMod.Agent.Modules
             commands = new Dictionary<string, CommandHandler>(StringComparer.InvariantCultureIgnoreCase)
             {
                 { "detect", cmd_scan },
+                { "hash", cmd_hash },
+                { "md5", cmd_hash },
                 { "scan", cmd_scan }
             };
         }
@@ -67,6 +70,34 @@ namespace uMod.Agent.Modules
         }
 
         #region Commands
+
+        private bool cmd_hash(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
+        {
+            if (!ctx.Engine.ExecuteCommand("scan") || ctx.LocatedGame == null) return false;
+
+            foreach (var file in ctx.LocatedGame.ScanData.KeyFiles)
+            {
+                if (!File.Exists(file.Path)) continue;
+
+                var md5 = MD5.Create();
+                var stream = File.OpenRead(file.Path);
+                var hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+
+                outputDevice.WriteStaticLine($"$grayCurrent hash for $white{file.Path}:");
+                outputDevice.WriteStaticLine($"$gray{hash}");
+                outputDevice.WriteStaticLine("");
+                outputDevice.WriteStaticLine($"$grayKnown hash for $white{file.Path}:");
+                outputDevice.WriteStaticLine($"$gray{(string.IsNullOrEmpty(file.Hash) ? "Unknown" : file.Hash)}");
+                outputDevice.WriteStaticLine("");
+
+                if (cmd.SimpleArgs.Length > 0 && cmd.SimpleArgs[0] == "save")
+                {
+                    // TODO: Update and save in uMod.Manifest.json
+                }
+            }
+
+            return true;
+        }
 
         private bool cmd_scan(CommandContext ctx, Command cmd, IOutputDevice outputDevice)
         {
