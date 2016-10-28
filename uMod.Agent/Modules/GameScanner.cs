@@ -125,7 +125,7 @@ namespace uMod.Agent.Modules
                 return true;
             }
 
-            outputDevice.WriteStaticLine($"$whiteIdentified game $green{ctx.LocatedGame.Name}$white");
+            outputDevice.WriteStaticLine($"$whiteIdentified game $green{ctx.LocatedGame.Name}");
 
             return true;
         }

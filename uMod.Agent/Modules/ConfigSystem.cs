@@ -50,6 +50,7 @@ namespace uMod.Agent.Modules
         /// <summary>
         /// Handles the specified command
         /// </summary>
+        /// <param name="ctx"></param>
         /// <param name="cmd">The command to handle</param>
         /// <param name="outputDevice">The device to write output to</param>
         /// <returns>True if handled, false if not</returns>
@@ -66,7 +67,7 @@ namespace uMod.Agent.Modules
         #region API
 
         /// <summary>
-        /// Gets the configuration for the specified name.
+        /// Gets the configuration for the specified name
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="context"></param>
@@ -76,8 +77,7 @@ namespace uMod.Agent.Modules
         {
             var path = Path.Combine(context.WorkingDirectory, $"uMod.{name}.json");
             if (!ModuleRegistry.GetModule<FileSystem>().SecurityCheck(path)) return null;
-            if (!File.Exists(path)) return null;
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+            return !File.Exists(path) ? null : JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
         }
 
         #endregion
