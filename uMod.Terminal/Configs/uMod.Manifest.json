@@ -1,305 +1,407 @@
 ﻿{
-  "Games": [
-    {
-      "Name": "7 Days to Die",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "7DaysToDieServer.exe",
-            "Hash": null
-          },
-          {
-            "Path": "7DaysToDieServer.x86",
-            "Hash": null
-          },
-          {
-            "Path": "7DaysToDieServer.x86_64",
-            "Hash": null
-          },
-          {
-            "Path": "7DaysToDieServer_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 294420,
-        "Branch": "public",
-        "Login": "anonymous"
-      },
-      "LaunchArguments": "-batchmode -nographics -configfile=serverconfig.xml -dedicated"
-    },
-    {
-      "Name": "Blockstorm",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "Blockstorm.exe",
-            "Hash": null
-          },
-          {
-            "Path": "Blockstorm.x86",
-            "Hash": null
-          },
-          {
-            "Path": "Blockstorm.x86_64",
-            "Hash": null
-          },
-          {
-            "Path": "Blockstorm_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 263060,
-        "Branch": "public",
-        "Login": null
-      },
-      "LaunchArguments": "-batchmode -nographics -config blockstorm.cfg"
-    },
-    {
-      "Name": "Hide & Hold Out",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "H2o.exe",
-            "Hash": null
-          },
-          {
-            "Path": "H2o_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 377610,
-        "Branch": "public",
-        "Login": "anonymous"
-      },
-      "LaunchArguments": "-batchmode -nographics"
-    },
-    {
-      "Name": "Hurtworld",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "Hurtworld.exe",
-            "Hash": null
-          },
-          {
-            "Path": "Hurtworld.x86_64",
-            "Hash": null
-          },
-          {
-            "Path": "Hurtworld_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 405100,
-        "Branch": "public",
-        "Login": "anonymous"
-      },
-      "LaunchArguments": "-batchmode -nographics"
-    },
-    {
-      "Name": "Medieval Engineers",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "MedievalEngineersDedicated.exe",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 367970,
-        "Branch": "public",
-        "Login": "anonymous"
-      }
-    },
-    {
-      "Name": "Nomad",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "NomadServer.exe",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 378370,
-        "Branch": "public",
-        "Login": null
-      },
-      "LaunchArguments": "-clientVersion 0.92 -tcpLobby 149.202.51.185 25565"
-    },
-    {
-      "Name": "Planet Explorers",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "PE_Server.exe",
-            "Hash": null
-          },
-          {
-            "Path": "PE_Server.x86",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 237870,
-        "Branch": "public",
-        "Login": null
-      },
-      "LaunchArguments": "-batchmode -nographics"
-    },
-    {
-      "Name": "Reign of Kings",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "ROK.exe",
-            "Hash": null
-          },
-          {
-            "Path": "ROK_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 381690,
-        "Branch": "public",
-        "Login": "anonymous"
-      },
-      "LaunchArguments": "-batchmode -nographics -silentcrash"
-    },
-    {
-      "Name": "Rust",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "RustDedicated",
-            "Hash": null
-          },
-          {
-            "Path": "RustDedicated.exe",
-            "Hash": null
-          },
-          {
-            "Path": "RustDedicated_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 258550,
-        "Branch": "public",
-        "Login": "anonymous"
-      },
-      "LaunchArguments": "-batchmode -nographics"
-    },
-    {
-      "Name": "Rust Legacy",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "rust_server.exe",
-            "Hash": null
-          },
-          {
-            "Path": "rust_server_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 258550,
-        "Branch": "legacy",
-        "Login": "anonymous"
-      },
-      "LaunchArguments": "-batchmode -nographics"
-    },
-    {
-      "Name": "Space Engineers",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "SpaceEngineersDedicated.exe",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 298740,
-        "Branch": "public",
-        "Login": "anonymous"
-      },
-      "LaunchArguments": "-console -path config"
-    },
-    {
-      "Name": "Terraria",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "TerrariaServer.exe",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 105600,
-        "Branch": "public",
-        "Login": null
-      },
-      "LaunchArguments": "-config serverconfig.txt"
-    },
-    {
-      "Name": "The Forest",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "TheForest.exe",
-            "Hash": null
-          },
-          {
-            "Path": "TheForest_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 242760,
-        "Branch": "public",
-        "Login": null
-      },
-      "LaunchArguments": "-batchmode -nographics"
-    },
-    {
-      "Name": "Unturned",
-      "ScanData": {
-        "KeyFiles": [
-          {
-            "Path": "Unturned.exe",
-            "Hash": null
-          },
-          {
-            "Path": "Unturned_Data/Managed/Assembly-CSharp.dll",
-            "Hash": null
-          }
-        ]
-      },
-      "Steam": {
-        "AppId": 304930,
-        "Branch": "public",
-        "Login": null
-      },
-      "LaunchArguments": "-batchmode -nographics"
-    }
-  ]
+    "Games": [
+        {
+            "Name": "7 Days to Die",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "7DaysToDieServer.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "7DaysToDieServer.x86",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "7DaysToDieServer.x86_64",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "7DaysToDieServer_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 294420,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-batchmode -nographics -configfile=serverconfig.xml -dedicated"
+        },
+        {
+            "Name": "Blackwake",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "BlackwakeServer.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "BlackwakeServer_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 423410,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-batchmode -nographics -config blockstorm.cfg"
+        },
+        {
+            "Name": "Blockstorm",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "Blockstorm.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "Blockstorm.x86",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "Blockstorm.x86_64",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "Blockstorm_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 263060,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-batchmode -nographics -config blockstorm.cfg"
+        },
+        {
+            "Name": "FortressCraft Evolved",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "64/FC_64.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "64/FC_64_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 254200,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        },
+        {
+            "Name": "From the Depths",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "From_The_Depths.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "From_The_Depths_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 268650,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        },
+        {
+            "Name": "Gang Beasts",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "gamg/GangBeasts.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "game/GangBeasts_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 497110,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        },
+        {
+            "Name": "Hurtworld",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "Hurtworld.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "Hurtworld.x86_64",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "Hurtworld_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 405100,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        },
+        {
+            "Name": "Interstellar Rift",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "Build/IR.exe",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 363360,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": ""
+        },
+        {
+            "Name": "Medieval Engineers",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "MedievalEngineersDedicated.exe",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 367970,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-console -path config"
+        },
+        {
+            "Name": "Nomad",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "Nomad Server/NomadServer.exe",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 378370,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-tcpLobby 149.202.51.185 25565"
+        },
+        {
+            "Name": "Planet Explorers",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "PE_Server.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "PE_Server.x86",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 237870,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        },
+        {
+            "Name": "Reign of Kings",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "ROK.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "ROK_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 381690,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-batchmode -nographics -silentcrash"
+        },
+        {
+            "Name": "Rust",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "RustDedicated",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "RustDedicated.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "RustDedicated_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 258550,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        },
+        {
+            "Name": "Savage Lands",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "SavageLandsDedicatedServer.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "SavageLandsDedicatedServer_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 378670,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-batchmode -nographics -writelogs -server_config server.cfg"
+        },
+        {
+            "Name": "Space Engineers",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "SpaceEngineersDedicated.exe",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 298740,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-console -path config"
+        },
+        {
+            "Name": "Stranded Deep",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "StrandedDeep.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "Stranded_Deep_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 313120,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": ""
+        },
+        {
+            "Name": "Terraria",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "TerrariaServer.exe",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 105600,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-config serverconfig.txt"
+        },
+        {
+            "Name": "The Forest",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "TheForestDedicatedServer.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "TheForestDedicatedServer_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 556450,
+                "Branch": "public",
+                "Login": "anonymous"
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        },
+        {
+            "Name": "Unturned",
+            "ScanData": {
+                "KeyFiles": [
+                    {
+                        "Path": "Unturned.exe",
+                        "Hash": null
+                    },
+                    {
+                        "Path": "Unturned_Data/Managed/Assembly-CSharp.dll",
+                        "Hash": null
+                    }
+                ]
+            },
+            "Steam": {
+                "AppId": 304930,
+                "Branch": "public",
+                "Login": null
+            },
+            "LaunchArguments": "-batchmode -nographics"
+        }
+    ]
 }
