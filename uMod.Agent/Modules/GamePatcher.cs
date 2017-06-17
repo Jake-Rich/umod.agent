@@ -71,11 +71,11 @@ namespace uMod.Agent.Modules
         {
             if (!ctx.Engine.ExecuteCommand("scan") || ctx.LocatedGame == null) return false;
 
-            var gameType = ctx.LocatedGame.ScanData.KeyFiles.Any(d => d.Path.Contains("Assembly-CSharp.dll")) ? "Unity" : "Other";
+            var gameType = ctx.LocatedGame.ScanData.KeyFiles.Any(d => d.Path.Contains("Assembly-CSharp.dll")) ? "Unity" : "Other"; // TODO: Handle Unreal, VRage
             var projectName = $"{ctx.LocatedGame.Name.Replace(" ", "")}";
 
             // Download the patcher, if needed
-            if (!File.Exists("OxidePatcher.exe")) ctx.Engine.ExecuteCommand("fetch \"https://github.com/OxideMod/Snapshots/raw/master/OxidePatcher.exe\"");
+            if (!File.Exists("OxidePatcher.exe")) ctx.Engine.ExecuteCommand("fetch \"https://dl.bintray.com/oxidemod/builds/OxidePatcher.exe\"");
 
             // Download the latest patch file for the located game
             ctx.Engine.ExecuteCommand($"fetch \"https://github.com/OxideMod/Oxide/raw/develop/Games/{gameType}/Oxide.Game.{projectName}/{projectName}.opj\"");
