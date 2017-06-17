@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using uMod.Agent.Commands;
 using uMod.Agent.UI;
 

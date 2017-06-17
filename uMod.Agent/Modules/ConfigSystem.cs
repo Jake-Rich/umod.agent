@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
 using Newtonsoft.Json;
-
 using uMod.Agent.UI;
 using uMod.Agent.Commands;
 

@@ -1,5 +1,4 @@
 ﻿using System;
-
 using uMod.Agent.UI;
 
 namespace uMod.Terminal.UI

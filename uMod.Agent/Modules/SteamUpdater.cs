@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-
 using uMod.Agent.UI;
 using uMod.Agent.Commands;
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using uMod.Agent.UI;
 
 namespace uMod.Terminal.UI

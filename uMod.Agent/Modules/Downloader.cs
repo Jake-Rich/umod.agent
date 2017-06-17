@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-
 using uMod.Agent.UI;
 using uMod.Agent.Commands;
 

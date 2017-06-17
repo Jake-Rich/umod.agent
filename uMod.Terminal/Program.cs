@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-
 using uMod.Agent;
 using uMod.Agent.Modules;
 using uMod.Agent.Commands;
